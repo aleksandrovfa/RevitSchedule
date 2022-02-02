@@ -79,6 +79,7 @@ namespace RevitSchedule
                     ts.Commit();
                 }
             }
+            MessageBox.Show("Спецификации обновлены \n Находятся в разделе: Расчетные данные(автоматически)");
             RaiseCloseRequest();
         }
 

@@ -79,7 +79,7 @@ namespace RevitSchedule
 
         internal void GetAllSumm()
         {
-            ElectrClass summ = new ElectrClass("Итоги");
+            ElectrClass summ = new ElectrClass("Итого:");
             summ.S_all = ElectrClassAll.Sum(x => x.S_all);
             summ.P_all = ElectrClassAll.Sum(x => x.P_all);
             summ.Q_all = ElectrClassAll.Sum(x => x.Q_all);

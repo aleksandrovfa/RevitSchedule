@@ -5,15 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RevitSchedule"
              mc:Ignorable="d" 
-             Height="310" Width="230"
+        
+
+             Height="350"
+             Width="230"
              Title="Расчет ТРН">
+    <Grid>
     <StackPanel>
         <Label Content="Выберите щит:"
                Margin="5"/>
         <ListBox ItemsSource="{Binding ElectrEquipAll}"
                  SelectionMode="Multiple"
                  DisplayMemberPath="Name"
-                 MaxHeight="200"
+                 Height="245"
                  ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -22,8 +26,11 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <Button Content="Рассчитать"
+            <Button Content="Рассчитать"
                 Command="{Binding SaveCommand}"
-                Margin="5"/>
-    </StackPanel>
+                    Margin="5"
+                />
+        </StackPanel>
+
+    </Grid>
 </Window>

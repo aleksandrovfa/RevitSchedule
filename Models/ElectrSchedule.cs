@@ -212,7 +212,7 @@ namespace RevitSchedule
             {
                 ElectrClass el = electrs[i];
                 table.InsertRow(rowStart + i);
-                if (el.Name != "Итоги")
+                if (el.Name != "Итого:")
                     table.SetCellText(rowStart + i, 0, (i + 1).ToString());
                 table.SetCellText(rowStart + i, 1, el.Name.Replace("ETL_", ""));
                 table.SetCellText(rowStart + i, 2, (el.P_all / 1000).ToString("F3"));
