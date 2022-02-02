@@ -74,6 +74,9 @@ namespace RevitSchedule
                 ElectrEquip.GetAllConsumers(ElectrEquip.FamilyInstance);
                 ElectrEquip.GetAllElectrClass(doc);
                 ElectrEquip.GetAllSumm();
+                ElectrSchedule electrSchedule = new ElectrSchedule(doc, ElectrEquip.Name);
+                electrSchedule.AddRowsWithElectrClass(ElectrEquip.ElectrClassAll);
+
 
             }
 
@@ -211,105 +214,109 @@ namespace RevitSchedule
                                .OfClass(typeof(ViewSchedule))
                                .Cast<ViewSchedule>()
                                .ToList();
-                string nameSample = "Таблица расчета нагрузок ШАБЛОН";
-                if (!schedules.Any(x => x.Name.Contains(nameSample)))
-                {
-                    ViewSchedule shablon = ViewSchedule.CreateSchedule(doc, Category.GetCategory(doc, BuiltInCategory.OST_Entourage).Id);
-                    shablon.Name = nameSample;
-                    shablon.LookupParameter("ADSK_Назначение вида").Set("Расчетные данные (Автоматически)");
-                    SchedulableField schedulableField = shablon.Definition.GetSchedulableFields().Single(x => x.GetName(doc) == "Группа модели");
-                    shablon.Definition.AddField(schedulableField);
-                    TableSectionData header = shablon.GetTableData().GetSectionData(SectionType.Header);
-                    TableSectionData body = shablon.GetTableData().GetSectionData(SectionType.Body);
+                //string nameSample = "Таблица расчета нагрузок ШАБЛОН";
+                //if (!schedules.Any(x => x.Name.Contains(nameSample)))
+                //{
+                //    ViewSchedule shablon = ViewSchedule.CreateSchedule(doc, Category.GetCategory(doc, BuiltInCategory.OST_Entourage).Id);
+                //    shablon.Name = nameSample;
+                //    shablon.LookupParameter("ADSK_Назначение вида").Set("Расчетные данные (автоматически)");
+                //    SchedulableField schedulableField = shablon.Definition.GetSchedulableFields().Single(x => x.GetName(doc) == "Группа модели");
+                //    shablon.Definition.AddField(schedulableField);
+                //    TableSectionData header = shablon.GetTableData().GetSectionData(SectionType.Header);
+                //    TableSectionData body = shablon.GetTableData().GetSectionData(SectionType.Body);
 
-                    #region Create table and set SizeTable
-                    double columnWidth = 0.6;
-                    header.ClearCell(0, 0);
-                    body.SetColumnWidth(0, columnWidth);
+                //    #region Create table and set SizeTable
+                //    double columnWidth = 0.6;
+                //    header.ClearCell(0, 0);
+                //    body.SetColumnWidth(0, columnWidth);
 
-                    for (int i = 1; i < 10; i++)
-                        header.InsertColumn(i);
+                //    for (int i = 1; i < 10; i++)
+                //        header.InsertColumn(i);
 
-                    header.SetColumnWidth(0, 0.025);
-                    columnWidth = columnWidth - 0.025;
-                    header.SetColumnWidth(1, 0.15);
-                    columnWidth = columnWidth - 0.15;
+                //    header.SetColumnWidth(0, 0.025);
+                //    columnWidth = columnWidth - 0.025;
+                //    header.SetColumnWidth(1, 0.15);
+                //    columnWidth = columnWidth - 0.15;
 
-                    for (int i = 2; i < 10; i++)
-                        header.SetColumnWidth(i, columnWidth / 8);
+                //    for (int i = 2; i < 10; i++)
+                //        header.SetColumnWidth(i, columnWidth / 8);
 
-                    header.InsertRow(1);
-                    header.InsertRow(2);
-                    header.SetRowHeight(2,header.GetRowHeight(2)/2);
-                    header.InsertRow(3);
-                    header.SetRowHeight(3, header.GetRowHeight(3)/2);
-                    #endregion
-                    #region Add text in cells and merge cells
-                    header.SetCellText(0, 0, nameSample);
-                    TableMergedCell mergedCell = header.GetMergedCell(0, 0);
-                    mergedCell.Right = 9;
-                    header.MergeCells(mergedCell);
-
-                    header.SetCellText(1, 0, "№");
-                    TableMergedCell mergedCell1 = header.GetMergedCell(1, 0);
-                    mergedCell1.Bottom = 3;
-                    header.MergeCells(mergedCell1);
-                    header.SetCellText(1, 0, "№");
-
-                    header.SetCellText(1, 1, "Наименование потребителя");
-                    TableMergedCell mergedCell2 = header.GetMergedCell(1, 1);
-                    mergedCell2.Bottom = 3;
-                    header.MergeCells(mergedCell2);
+                //    header.InsertRow(1);
+                //    header.InsertRow(2);
+                //    header.SetRowHeight(2,header.GetRowHeight(2)/2);
+                //    header.InsertRow(3);
+                //    header.SetRowHeight(3, header.GetRowHeight(3)/2);
+                //    #endregion
 
 
-                    header.SetCellText(1, 2, "Установл. мощность");
-                    header.SetCellText(2, 2, "Ру");
-                    header.SetCellText(3, 2, "кВт");
+                //    #region Add text in cells and merge cells
+                //    header.SetCellText(0, 0, nameSample);
+                //    TableMergedCell mergedCell = header.GetMergedCell(0, 0);
+                //    mergedCell.Right = 9;
+                //    header.MergeCells(mergedCell);
 
-                    header.SetCellText(1, 3, "Коэфф. спроса");
-                    header.SetCellText(2, 3, "Кс");
-                    TableMergedCell mergedCell3 = header.GetMergedCell(2, 3);
-                    mergedCell3.Bottom = 3;
-                    header.MergeCells(mergedCell3);
-
-                    header.SetCellText(1, 4, "Коэффициент мощности");
-                    TableMergedCell mergedCell5 = header.GetMergedCell(1, 4);
-                    mergedCell5.Right = 5;
-                    header.MergeCells(mergedCell5);
-                    header.SetCellText(2, 4, "cosφ");
-                    TableMergedCell mergedCell4 = header.GetMergedCell(2, 4);
-                    mergedCell4.Bottom = 3;
-                    header.MergeCells(mergedCell4);
-
-                    header.SetCellText(2, 5, "tgφ");
-                    TableMergedCell mergedCell6 = header.GetMergedCell(2, 5);
-                    mergedCell6.Bottom = 3;
-                    header.MergeCells(mergedCell6);
+                //    header.SetCellText(1, 0, "№");
+                //    TableMergedCell mergedCell1 = header.GetMergedCell(1, 0);
+                //    mergedCell1.Bottom = 3;
+                //    header.MergeCells(mergedCell1);
 
 
-                    header.SetCellText(1, 6, "Расчетные нагрузки");
-                    TableMergedCell mergedCell7 = header.GetMergedCell(1, 6);
-                    mergedCell7.Right = 8;
-                    header.MergeCells(mergedCell7);
-                    header.SetCellText(2, 6, "Рр");
-                    header.SetCellText(3, 6, "кВт");
-
-                    header.SetCellText(2, 7, "Qр");
-                    header.SetCellText(3, 7, "кВтАр");
+                //    header.SetCellText(1, 1, "Наименование потребителя");
+                //    TableMergedCell mergedCell2 = header.GetMergedCell(1, 1);
+                //    mergedCell2.Bottom = 3;
+                //    header.MergeCells(mergedCell2);
 
 
-                    header.SetCellText(2, 8, "Sр");
-                    header.SetCellText(3, 8, "кВА");
+                //    header.SetCellText(1, 2, "Установл. мощность");
+                //    header.SetCellText(2, 2, "Ру");
+                //    header.SetCellText(3, 2, "кВт");
 
-                    header.SetCellText(1, 9, "I");
-                    TableMergedCell mergedCell8 = header.GetMergedCell(1, 9);
-                    mergedCell8.Bottom = 2;
-                    header.MergeCells(mergedCell8);
-                    header.SetCellText(3, 9, "А");
-                    #endregion
+                //    header.SetCellText(1, 3, "Коэфф. спроса");
+                //    header.SetCellText(2, 3, "Кс");
+                //    TableMergedCell mergedCell3 = header.GetMergedCell(2, 3);
+                //    mergedCell3.Bottom = 3;
+                //    header.MergeCells(mergedCell3);
 
-                }
+                //    header.SetCellText(1, 4, "Коэффициент мощности");
+                //    TableMergedCell mergedCell5 = header.GetMergedCell(1, 4);
+                //    mergedCell5.Right = 5;
+                //    header.MergeCells(mergedCell5);
+                //    header.SetCellText(2, 4, "cosφ");
+                //    TableMergedCell mergedCell4 = header.GetMergedCell(2, 4);
+                //    mergedCell4.Bottom = 3;
+                //    header.MergeCells(mergedCell4);
 
+                //    header.SetCellText(2, 5, "tgφ");
+                //    TableMergedCell mergedCell6 = header.GetMergedCell(2, 5);
+                //    mergedCell6.Bottom = 3;
+                //    header.MergeCells(mergedCell6);
+
+
+                //    header.SetCellText(1, 6, "Расчетные нагрузки");
+                //    TableMergedCell mergedCell7 = header.GetMergedCell(1, 6);
+                //    mergedCell7.Right = 8;
+                //    header.MergeCells(mergedCell7);
+                //    header.SetCellText(2, 6, "Рр");
+                //    header.SetCellText(3, 6, "кВт");
+
+                //    header.SetCellText(2, 7, "Qр");
+                //    header.SetCellText(3, 7, "кВтАр");
+
+
+                //    header.SetCellText(2, 8, "Sр");
+                //    header.SetCellText(3, 8, "кВА");
+
+                //    header.SetCellText(1, 9, "I");
+                //    TableMergedCell mergedCell8 = header.GetMergedCell(1, 9);
+                //    mergedCell8.Bottom = 2;
+                //    header.MergeCells(mergedCell8);
+                //    header.SetCellText(3, 9, "А");
+                //    #endregion
+
+                //}
+
+                /////////////////////////////////////////////////////////////////////////////////////////
+               
 
                 //TableSectionData table = schedules.GetTableData().GetSectionData(SectionType.Header);
                 //int rowStart = 4;
