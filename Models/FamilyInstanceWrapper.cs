@@ -19,7 +19,7 @@ namespace RevitSchedule
         public FamilyInstanceWrapper(FamilyInstance familyInstance)
         {
             FamilyInstance = familyInstance;
-            Name = familyInstance.Name; 
+            Name = familyInstance.Name;
         }
 
         //Получение всех FamilyInstance которые подключены к щиту и формирование списка потребителей Consumers
@@ -28,18 +28,24 @@ namespace RevitSchedule
         {
             //ISet<ElectricalSystem> systems = ElEq.MEPModel.GetAssignedElectricalSystems();
             ElectricalSystemSet systems = ElEq.MEPModel.AssignedElectricalSystems;
-            foreach (ElectricalSystem system in systems)
+            if (systems != null)
             {
-                ElementSet systems2 = system.Elements;
-                foreach (var system2 in systems2)
+                foreach (var system in systems)
                 {
-                    var i = system2 as FamilyInstance;
-                    if (i.Category.Name == "Электрооборудование")
-                        GetAllConsumers(i);
-                    else
-                        Consumers.Add(i);
+                    //ElementSet systems2 = system.Elements;
+                    ElementSet systems2 = (system as ElectricalSystem).Elements;
+                    foreach (var system2 in systems2)
+                    {
+                        var i = system2 as FamilyInstance;
+                        if (i.Category.Name == "Электрооборудование")
+                            GetAllConsumers(i);
+                        else
+                            Consumers.Add(i);
+                    }
                 }
+
             }
+
         }
 
         //Преобразование электрического коннектора в класс СonsumerParam
