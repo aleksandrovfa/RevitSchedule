@@ -66,15 +66,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsumerParam.cs" />
-    <Compile Include="ElectrClass.cs" />
-    <Compile Include="ElectrSchedule.cs" />
-    <Compile Include="FamilyInstanceWrapper.cs" />
+    <Compile Include="Models\ConsumerParam.cs" />
+    <Compile Include="Models\ElectrClass.cs" />
+    <Compile Include="Models\ElectrSchedule.cs" />
+    <Compile Include="Models\FamilyInstanceWrapper.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="MainView.xaml.cs">
+    <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainViewViewModel.cs" />
+    <Compile Include="ViewModels\MainViewViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,7 +82,7 @@
     <None Include="RevitSchedule.addin" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainView.xaml">
+    <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,6 +90,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)*.*" "C:\Program Files\RevitAPITrainig\" /y /i
