@@ -41,7 +41,8 @@ namespace RevitSchedule
                                            .WhereElementIsNotElementType()
                                            .Cast<Element>()
                                            .Cast<FamilyInstance>()
-                                           .Where(x => x.MEPModel.GetAssignedElectricalSystems().Count > 0)
+                                           //.Where(x => x.MEPModel.GetAssignedElectricalSystems().Count > 0)
+                                           .Where(x => x.MEPModel.AssignedElectricalSystems != null)
                                            .Select(x => new FamilyInstanceWrapper(x))
                                            .ToList();
 

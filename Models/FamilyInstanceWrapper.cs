@@ -26,8 +26,9 @@ namespace RevitSchedule
         //Метод работает через рекурсию
         public void GetAllConsumers(FamilyInstance ElEq)
         {
-            ISet<ElectricalSystem> systems = ElEq.MEPModel.GetAssignedElectricalSystems();
-            foreach (var system in systems)
+            //ISet<ElectricalSystem> systems = ElEq.MEPModel.GetAssignedElectricalSystems();
+            ElectricalSystemSet systems = ElEq.MEPModel.AssignedElectricalSystems;
+            foreach (ElectricalSystem system in systems)
             {
                 ElementSet systems2 = system.Elements;
                 foreach (var system2 in systems2)

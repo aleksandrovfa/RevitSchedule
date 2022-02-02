@@ -43,8 +43,8 @@ namespace RevitSchedule
                                       BuiltInParameter.RBS_ELEC_APPARENT_LOAD));
             var u = (param as DoubleParameterValue).Value;
             S_notConvert = u;
-            S = UnitUtils.ConvertFromInternalUnits(u, UnitTypeId.VoltAmperes);
-
+            //S = UnitUtils.ConvertFromInternalUnits(u, UnitTypeId.VoltAmperes);
+            S=UnitUtils.ConvertFromInternalUnits(u, DisplayUnitType.DUT_VOLT_AMPERES);
 
             ParameterValue param2 = famConnInfo
                                           .GetConnectorParameterValue(new ElementId(
@@ -69,8 +69,8 @@ namespace RevitSchedule
                           .GetConnectorParameterValue(new ElementId(
                           BuiltInParameter.RBS_ELEC_VOLTAGE));
             var u5 = (param5 as DoubleParameterValue).Value;
-            Voltage = UnitUtils.ConvertFromInternalUnits(u5, UnitTypeId.Volts);
-
+            //Voltage = UnitUtils.ConvertFromInternalUnits(u5, UnitTypeId.Volts);
+            Voltage = UnitUtils.ConvertFromInternalUnits(u5, DisplayUnitType.DUT_VOLTS);
             P = S * cosFi;
             P_notConvert = S_notConvert * cosFi;
             Q = Math.Sqrt(Math.Pow(S, 2) - Math.Pow(P, 2));
