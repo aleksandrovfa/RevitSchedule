@@ -5,32 +5,60 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RevitSchedule"
              mc:Ignorable="d" 
-        
-
-             Height="350"
+             Height="450"
              Width="230"
              Title="Расчет ТРН">
     <Grid>
-    <StackPanel>
-        <Label Content="Выберите щит:"
-               Margin="5"/>
-        <ListBox ItemsSource="{Binding ElectrEquipAll}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition />
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Label Content="Выберите щиты для расчета:"
+                   Margin="5" 
+                   Grid.Row="0"/>
+        <ScrollViewer 
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto"
+                Grid.Row="1"
+                Margin="5">
+            <ListBox ItemsSource="{Binding ElectrEquipAll}"
                  SelectionMode="Multiple"
-                 DisplayMemberPath="Name"
-                 Height="245"
-                 ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="IsSelected"
-                            Value="{Binding IsSelected}"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-            <Button Content="Рассчитать"
-                Command="{Binding SaveCommand}"
+                 DisplayMemberPath="Name">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem" >
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                        <!--Весь этот здоровенный  setter только для того чтобы
+                        не пропадало выделение при отсутсвии фокуса на листбоксе.
+                        И это еще короткий вариант, здесь был длиннее
+                        https://stackoverflow.com/questions/35890977/in-a-wpf-listbox-how-to-copy-the-focused-selection-style-for-items-over-to-th-->
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border x:Name="Bd"  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background"  Value="#1F26A0DA"/>
+                                            <Setter Property="BorderBrush"  Value="#a826A0Da"/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background"  Value="#3D26A0DA"/>
+                                            <Setter Property="BorderBrush"  Value="#FF26A0DA"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </ScrollViewer>
+        <Button Content="Рассчитать"
+                    Command="{Binding SaveCommand}"
                     Margin="5"
-                />
-        </StackPanel>
-
+                    Grid.Row="2">
+        </Button>
     </Grid>
 </Window>

@@ -4,7 +4,7 @@
     <Assembly>"RevitSchedule.dll"</Assembly>
     <AddInId>7109957F-659B-44D1-8D8D-0276B68C7B45</AddInId>
     <FullClassName>RevitSchedule.Main</FullClassName>
-    <VendorId>ADSK</VendorId>
+    <VendorId>Aleksandrov</VendorId>
     <Text>RevitSchedule</Text>
   </AddIn>
 </RevitAddIns>
