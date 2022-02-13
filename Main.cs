@@ -15,6 +15,11 @@ namespace RevitSchedule
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             var mainView = new MainView(commandData);
+#if R2019
+            TaskDialog.Show("RevitSchedule", "Hello Revit 2019");
+#elif R2022
+            TaskDialog.Show("RevitSchedule", "Hello Revit 2022");
+#endif
             mainView.ShowDialog();
             return Result.Succeeded;
         }

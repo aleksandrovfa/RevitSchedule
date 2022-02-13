@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +64,14 @@ namespace RevitSchedule
             ElementId electrViewScheduleId = host.Duplicate(ViewDuplicateOption.Duplicate);
             ViewSchedule electrViewSchedule = Doc.GetElement(electrViewScheduleId) as ViewSchedule;
             electrViewSchedule.Name = host.Name.Replace("ШАБЛОН", Name);
-            electrViewSchedule.LookupParameter("ADSK_Назначение вида").Set("Расчетные данные (автоматически)");
+            try
+            {
+                electrViewSchedule.LookupParameter("ADSK_Назначение вида").Set("Расчетные данные (автоматически)");
+            }
+            catch (Exception)
+            {
+                TaskDialog.Show("Ошибка!", "Не найден параметр (ADSK_Назначение вида), спецификация будет создана без назначения");
+            }
             TableSectionData table = electrViewSchedule.GetTableData().GetSectionData(SectionType.Header);
             string nameTable = table.GetCellText(0, 0);
             table.SetCellText(0, 0, nameTable.Replace("ШАБЛОН", Name));
@@ -105,7 +113,14 @@ namespace RevitSchedule
                 string nameSample = "Таблица расчета нагрузок ШАБЛОН";
                 ViewSchedule sample = ViewSchedule.CreateSchedule(Doc, Category.GetCategory(Doc, BuiltInCategory.OST_Entourage).Id);
                 sample.Name = nameSample;
-                sample.LookupParameter("ADSK_Назначение вида").Set("Расчетные данные (автоматически)");
+                try
+                {
+                    sample.LookupParameter("ADSK_Назначение вида").Set("Расчетные данные (автоматически)");
+                }
+                catch (Exception)
+                {
+                    TaskDialog.Show("Ошибка!", "Не найден параметр (ADSK_Назначение вида), спецификация будет создана без назначения");
+                }
                 SchedulableField schedulableField = sample.Definition.GetSchedulableFields().Single(x => x.GetName(Doc) == "Группа модели");
                 sample.Definition.AddField(schedulableField);
                 TableSectionData header = sample.GetTableData().GetSectionData(SectionType.Header);
