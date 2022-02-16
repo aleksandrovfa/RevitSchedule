@@ -1,0 +1,16 @@
+G:\repos\RevitSchedule\bin\Debug\RevitSchedule.addin
+G:\repos\RevitSchedule\bin\Debug\RevitSchedule.dll.config
+G:\repos\RevitSchedule\bin\Debug\RevitSchedule.dll
+G:\repos\RevitSchedule\bin\Debug\RevitSchedule.pdb
+G:\repos\RevitSchedule\obj\Debug\Views\MainView.g.cs
+G:\repos\RevitSchedule\obj\Debug\RevitSchedule_MarkupCompile.cache
+G:\repos\RevitSchedule\obj\Debug\RevitSchedule_MarkupCompile.lref
+G:\repos\RevitSchedule\obj\Debug\Views\MainView.baml
+G:\repos\RevitSchedule\obj\Debug\RevitSchedule.g.resources
+G:\repos\RevitSchedule\obj\Debug\RevitSchedule.csproj.CoreCompileInputs.cache
+G:\repos\RevitSchedule\obj\Debug\RevitSchedule.csproj.Fody.CopyLocal.cache
+G:\repos\RevitSchedule\obj\Debug\RevitSchedule.dll
+G:\repos\RevitSchedule\obj\Debug\RevitSchedule.pdb
+G:\repos\RevitSchedule\bin\Debug\Prism.xml
+G:\repos\RevitSchedule\obj\Debug\RevitSchedule.csproj.CopyComplete
+G:\repos\RevitSchedule\obj\Debug\RevitSchedule.csproj.AssemblyReference.cache

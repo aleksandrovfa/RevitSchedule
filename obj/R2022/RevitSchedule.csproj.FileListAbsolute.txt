@@ -1,0 +1,13 @@
+G:\repos\RevitSchedule\bin\R2022\RevitSchedule_2022.dll.config
+G:\repos\RevitSchedule\bin\R2022\RevitSchedule_2022.dll
+G:\repos\RevitSchedule\bin\R2022\RevitSchedule_2022.pdb
+G:\repos\RevitSchedule\obj\R2022\RevitSchedule.csproj.AssemblyReference.cache
+G:\repos\RevitSchedule\obj\R2022\Views\MainView.g.cs
+G:\repos\RevitSchedule\obj\R2022\RevitSchedule_2022_MarkupCompile.cache
+G:\repos\RevitSchedule\obj\R2022\RevitSchedule_2022_MarkupCompile.lref
+G:\repos\RevitSchedule\obj\R2022\Views\MainView.baml
+G:\repos\RevitSchedule\obj\R2022\RevitSchedule_2022.g.resources
+G:\repos\RevitSchedule\obj\R2022\RevitSchedule.csproj.CoreCompileInputs.cache
+G:\repos\RevitSchedule\obj\R2022\RevitSchedule.csproj.Fody.CopyLocal.cache
+G:\repos\RevitSchedule\obj\R2022\RevitSchedule_2022.dll
+G:\repos\RevitSchedule\obj\R2022\RevitSchedule_2022.pdb

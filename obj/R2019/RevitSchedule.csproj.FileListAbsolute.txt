@@ -1,0 +1,13 @@
+G:\repos\RevitSchedule\bin\R2019\RevitSchedule_2019.dll.config
+G:\repos\RevitSchedule\bin\R2019\RevitSchedule_2019.dll
+G:\repos\RevitSchedule\bin\R2019\RevitSchedule_2019.pdb
+G:\repos\RevitSchedule\obj\R2019\RevitSchedule.csproj.AssemblyReference.cache
+G:\repos\RevitSchedule\obj\R2019\Views\MainView.g.cs
+G:\repos\RevitSchedule\obj\R2019\RevitSchedule_2019_MarkupCompile.cache
+G:\repos\RevitSchedule\obj\R2019\RevitSchedule_2019_MarkupCompile.lref
+G:\repos\RevitSchedule\obj\R2019\Views\MainView.baml
+G:\repos\RevitSchedule\obj\R2019\RevitSchedule_2019.g.resources
+G:\repos\RevitSchedule\obj\R2019\RevitSchedule.csproj.CoreCompileInputs.cache
+G:\repos\RevitSchedule\obj\R2019\RevitSchedule.csproj.Fody.CopyLocal.cache
+G:\repos\RevitSchedule\obj\R2019\RevitSchedule_2019.dll
+G:\repos\RevitSchedule\obj\R2019\RevitSchedule_2019.pdb
