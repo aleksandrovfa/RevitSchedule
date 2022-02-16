@@ -46,6 +46,7 @@ namespace RevitSchedule
 #elif R2022
                                             .Where(x => x.MEPModel.GetAssignedElectricalSystems().Count > 0)
 #endif
+
                                            .Select(x => new FamilyInstanceWrapper(x))
                                            .ToList();
 
