@@ -12,8 +12,11 @@ namespace RevitSchedule
     {
 
         public ViewSchedule ElectrViewSchedule { get; set; } //  ТРН щита
+
         public ViewSchedule Host { get; set; } //ШАБЛОН
+
         private Document Doc { get; set; }
+
         public string Name { get; set; } 
 
         public ElectrSchedule(Document doc, string electrEquipName)
