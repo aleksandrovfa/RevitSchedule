@@ -24,6 +24,7 @@ namespace RevitSchedule
         public Document doc { get; set; }
 
 
+
         public List<FamilyInstanceWrapper> ElectrEquipAll { get; } = new List<FamilyInstanceWrapper>();
         public List<ViewSchedule> viewSchedules { get; } = new List<ViewSchedule>();
         public DelegateCommand SaveCommand { get; }
